@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {last} from "rxjs";
+import {last, switchMap} from "rxjs";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
+import {UsersService} from "../../services/users.service";
 
 export function passwordsMatchValidator(): ValidatorFn{
   return (control: AbstractControl): ValidationErrors | null =>{
@@ -29,8 +30,7 @@ export function passwordsMatchValidator(): ValidatorFn{
 export class SignUpComponent {
 
   signUpForm = new FormGroup({
-    firstName: new FormControl('',Validators.required),
-    lastName: new FormControl('',Validators.required),
+    name: new FormControl('',Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     confirmPassword: new FormControl('', Validators.required)
@@ -38,16 +38,14 @@ export class SignUpComponent {
 
 
   constructor(private authService: AuthenticationService,
-              private router:Router) {}
+              private router:Router,
+              private usersService: UsersService
+  ) {}
 
   ngOnInit(): void{}
 
-  get firstName(){
-    return this.signUpForm.get('firstName');
-  }
-
-  get lastName(){
-    return this.signUpForm.get('lastName');
+  get name(){
+    return this.signUpForm.get('name');
   }
 
   get email(){
@@ -66,12 +64,16 @@ export class SignUpComponent {
   submit() {
     const { firstName, lastName, email, password } = this.signUpForm.value;
 
-    if (!this.signUpForm.valid || !firstName || !lastName || !password || !email) {
+    if (!this.signUpForm.valid || !name || !password || !email)
+    {
       return;
     }
 
     this.authService
-        .signUp(firstName, lastName, email, password)
+        .signUp( email, password)
+        .pipe(
+            switchMap(({user:{uid}})=>this.usersService.addUser({uid, email, displayName: name}))
+        )
         .subscribe(() => {
           this.router.navigate(['/home']);
         });

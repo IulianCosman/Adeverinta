@@ -18,11 +18,8 @@ export class AuthenticationService {
 
   constructor(private auth: Auth) { }
 
-  signUp(firstName: string, lastName:string,email: string, password: string){
+  signUp(email: string, password: string){
     return from(createUserWithEmailAndPassword(this.auth,email, password))
-        .pipe(
-            switchMap(({user})=>updateProfile(user, {displayName: lastName + ' ' + firstName}))
-        );
   }
 
   login(username: string, password: string){

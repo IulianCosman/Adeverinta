@@ -19,6 +19,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import {MatMenuModule} from "@angular/material/menu";
 import {getFirestore, provideFirestore} from "@angular/fire/firestore";
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {getFirestore, provideFirestore} from "@angular/fire/firestore";
     SignUpComponent,
     HomeComponent,
     LandingComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

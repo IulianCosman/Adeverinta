@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   Adeverinta
 
-  <ng-container *ngIf="authService.currentUser$ | async as user ; else loginButton ">
+  <ng-container *ngIf="user$ | async as user ; else loginButton ">
     <button mat-button [matMenuTriggerFor]="userMenu">
       <mat-icon>account_circle</mat-icon>
       {{user.displayName}}
@@ -23,6 +23,10 @@
 </div>
 
 <mat-menu #userMenu="matMenu">
+  <button mat-menu-item routerLink="/profile">
+    <mat-icon>account_circle</mat-icon>
+    Profile
+  </button>
   <button mat-menu-item (click)="logout()">
     Logout
   </button>
