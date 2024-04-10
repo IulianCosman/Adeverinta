@@ -15,6 +15,7 @@ const routes: Routes = [
   {
     path:'login',
     component: LoginComponent,
+    ...canActivate(redirectToHome)
   },
   {
     path:'sign-up',
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path:'home',
     component: HomeComponent,
+    ...canActivate(redirectToLogin)
   },
 ];
 

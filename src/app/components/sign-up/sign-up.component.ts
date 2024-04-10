@@ -71,7 +71,7 @@ export class SignUpComponent {
     }
 
     this.authService
-        .signUp(email, password)
+        .signUp(firstName, lastName, email, password)
         .subscribe(() => {
           this.router.navigate(['/home']);
         });

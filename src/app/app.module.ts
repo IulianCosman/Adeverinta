@@ -17,6 +17,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import {MatMenuModule} from "@angular/material/menu";
+import {getFirestore, provideFirestore} from "@angular/fire/firestore";
 
 @NgModule({
   declarations: [
@@ -35,9 +37,12 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp({"projectId":"adeverinta-8dffd","appId":"1:821350591547:web:bc307ec329a41784d2401e","storageBucket":"adeverinta-8dffd.appspot.com","apiKey":"AIzaSyAGddYdoW3IXsbQhfuV5wDksahpTAg6Wqw","authDomain":"adeverinta-8dffd.firebaseapp.com","messagingSenderId":"821350591547"})),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
+    provideFirestore(()=>getFirestore()),
+    
   ],
   providers: [
     provideClientHydration(),
