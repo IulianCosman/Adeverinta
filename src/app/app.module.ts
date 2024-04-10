@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { LandingComponent } from './components/landing/landing.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp({"projectId":"adeverinta-8dffd","appId":"1:821350591547:web:bc307ec329a41784d2401e","storageBucket":"adeverinta-8dffd.appspot.com","apiKey":"AIzaSyAGddYdoW3IXsbQhfuV5wDksahpTAg6Wqw","authDomain":"adeverinta-8dffd.firebaseapp.com","messagingSenderId":"821350591547"})),
+    provideAuth(() => getAuth())
   ],
   providers: [
     provideClientHydration(),
