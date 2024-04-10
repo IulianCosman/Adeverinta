@@ -62,7 +62,7 @@ export class SignUpComponent {
   protected readonly last = last;
 
   submit() {
-    const { firstName, lastName, email, password } = this.signUpForm.value;
+    const { name, email, password } = this.signUpForm.value;
 
     if (!this.signUpForm.valid || !name || !password || !email)
     {

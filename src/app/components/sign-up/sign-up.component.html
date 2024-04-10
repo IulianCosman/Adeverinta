@@ -9,13 +9,6 @@
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Last Name " formControlName="lastName">
-            <mat-error *ngIf="lastName?.errors?.['required']">
-                Last Name is required
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
             <input matInput placeholder="Email address" formControlName="email">
             <mat-error *ngIf="email?.errors?.['required']">
                 Email is required
