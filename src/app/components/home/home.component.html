@@ -1,3 +1,10 @@
-<h1 *ngIf="user$ | async as user"> Welcome to our app, {{user.displayName}}!</h1>
-
-
+<div *ngIf="user$ | async as user" class="form-container mat-elevation-z5">
+    <div class="center">
+        <img src="/assets/doctor.jpg" class="user-photo" alt="" height="512" width="512" />
+    </div>
+    <div class="center">
+    <button mat-raised-button color="primary" class="margin-top" (click)="download(user?.firstName, user?.lastName, user?.phone, user?.email, user?.address, user?.university)">
+        Generate my Doctor's Note!
+    </button>
+    </div>
+</div>

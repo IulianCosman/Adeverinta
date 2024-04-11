@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  Adeverinta
+  Doctor's Note
 
   <ng-container *ngIf="user$ | async as user ; else loginButton ">
     <button mat-button [matMenuTriggerFor]="userMenu">
@@ -28,6 +28,7 @@
     Profile
   </button>
   <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
     Logout
   </button>
 </mat-menu>
